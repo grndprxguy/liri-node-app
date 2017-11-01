@@ -20,8 +20,8 @@ var spotify = new Spotify({
 
 var nodeArgs = process.argv;
 var action = nodeArgs[2];
-var input = JSON.stringify(nodeArgs[3]);
-console.log(input.replace(/\"/g, ""))
+var input1 = JSON.stringify(nodeArgs.slice(3));
+var input = encodeURIComponent(input1);
 str = "";
 
 // var firstPrompt = [{
@@ -41,6 +41,7 @@ str = "";
 // // 	console.log("end")
 // // 	};
 
+// function to look up tweets
 function tweets() {
 	client.get('statuses/user_timeline',function(err, response) {
 		if (err) {
@@ -50,6 +51,7 @@ function tweets() {
  	})
 };
 
+// function to look up spotify
 function spotifyResp() {
 	console.log("spotify");
 	spotify.search({type: 'track', query: "'" + input + "'"}, function(err,data) {
@@ -58,13 +60,19 @@ function spotifyResp() {
   }
   if (input !== undefined){
   	var track = data.tracks.items[0];
-  	console.log("Artists: " + track.Artists.name)}
+  	console.log("Artists: " + track.artists[0].name)
+  	console.log("Album: " + track.album.name)
+  	console.log("Track Name: " + track.name);
+  	console.log("Preview: " + track.href);
+  }
   
 	})
 };
 
+// function to look up OMDB
 function omdbLookup() {
 	console.log("omdb");
+	console.log(input);
 	var url = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=40e9cece";
 	console.log(url);
 	request(url, function(err,response,body) {
