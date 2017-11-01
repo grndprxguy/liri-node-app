@@ -47,7 +47,9 @@ function tweets() {
 		if (err) {
     	return console.log('Error occurred: ' + err);
   	};
- 	console.log(JSON.stringify(response));
+  	for (i=0;i < 5; i++) {
+ 	console.log(JSON.stringify(response[i].text));
+ }
  	})
 };
 
@@ -72,18 +74,17 @@ function spotifyResp() {
 // function to look up OMDB
 function omdbLookup() {
 	console.log("omdb");
-	console.log(input);
 	var url = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=40e9cece";
-	console.log(url);
 	request(url, function(err,response,body) {
-		console.log("Title: " + JSON.parse(body.Title));
-		console.log("Year: " + JSON.parse(body.Year));
-		console.log("IMDB Rating: " + JSON.parse(body.IMDB));
-		console.log("Rotten Tomatoes Rating: " + JSON.parse(body.Rotten));
-		console.log("Country: " + JSON.parse(body.Country));
-		console.log("Language: " + JSON.parse(body.Language));
-		console.log("Plot: " + JSON.parse(body.Plot));
-		console.log("Actors: " + JSON.parse(body.Actors));
+		var obj = JSON.parse(body);
+		console.log("Title: " + obj.Title);
+		console.log("Year: " + obj.Year);
+		console.log("IMDB Rating: " + obj.IMDB);
+		console.log("Rotten Tomatoes Rating: " + obj.Rotten);
+		console.log("Country: " + obj.Country);
+		console.log("Language: " + obj.Language);
+		console.log("Plot: " + obj.Plot);
+		console.log("Actors: " + obj.Actors);
 	});
 }
 
