@@ -9,8 +9,8 @@ var twitterKeys = {
 }
 
 var spotifyKeys = {
-	userID: '1218094585',
-	devicePw: 'rb3hdcjawBk~&%md'
+	id: 'c81362756dd54471bde14e0231862832',
+	secret: 'db4bcc75f6a14b3292a3b4d0d22228a1'
 }
 
 var omdbKey = {
