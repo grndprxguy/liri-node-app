@@ -5,6 +5,7 @@ var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
 var fs = require("fs");
 
+// twitter authentication
 var client = new Twitter({
   consumer_key: keys.twitterKeys.consumer_key,
   consumer_secret: keys.twitterKeys.consumer_secret,
@@ -12,11 +13,13 @@ var client = new Twitter({
   access_token_secret: keys.twitterKeys.access_token_secret
 });
 
+// spotify authentication
 var spotify = new Spotify({
   id: keys.spotifyKeys.id,
   secret: keys.spotifyKeys.secret
 });
 
+// capture user input
 var nodeArgs = process.argv;
 var action = nodeArgs[2];
 var input1 = JSON.stringify(nodeArgs.slice(3));
@@ -89,6 +92,7 @@ function omdbLookup() {
 	});
 }
 
+// function to read random.txt and execute
 function whatItSays() {
 	fs.readFile("random.txt", "utf8", function(error, data) {
 		if (error) {
@@ -102,6 +106,7 @@ function whatItSays() {
 	});
 };
 
+// determine user input and call functions
 function argTest() {
 	for (var i = 2; i < nodeArgs.length; i++) {
 		str = str + " " + nodeArgs[i];
